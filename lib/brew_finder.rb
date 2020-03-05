@@ -1,6 +1,3 @@
-require "brew_finder/version"
-
-module BrewFinder
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./brew_finder/version"
+require_relative './brew_finder/brewery'
+require_relative './brew_finder/cli'

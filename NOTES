@@ -7,9 +7,9 @@
 7) Discover objects -- one object does one thing
 8) Program -- broken, working, refactor, broken, working.... etc
 
-A command line interface program, Brews Near You.
+A command line interface program, Brew Finder.
 
-User types Find Brews
+User types Brew Finder
 
 Program welcomes user and asks for postal code
 

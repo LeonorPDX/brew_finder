@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/brew_finder'
+
+BrewFinder::CLI.new.call
