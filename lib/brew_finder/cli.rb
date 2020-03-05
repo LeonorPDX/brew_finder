@@ -23,20 +23,22 @@ class BrewFinder::CLI
   
   def brewery_details
     input = nil 
-    while input != exit
-    puts "Which brewery would you like to learn more about? Please enter a number. Or, type 'new zip' to try a new location or type 'exit'"
 
+    
+    puts "Which brewery would you like to learn more about? Please enter a number. Or, type 'new zip' to try a new location or type 'exit'"
+    
+    while input != exit
+    
     input = gets.strip.downcase
 
       if input.to_i > 0 
         puts @breweries[input.to_i-1]
       elsif input == "new zip"
         list_breweries
-      elsif input == "exit"
-        goodbye
       else
         puts "Not sure what you meant, please type 'new zip' or 'exit'"
       end
+      
      end
   end
   
