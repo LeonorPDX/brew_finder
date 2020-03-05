@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/brew_finder'
+require "bundler/setup"
+require "brew_finder"
 
 BrewFinder::CLI.new.call
