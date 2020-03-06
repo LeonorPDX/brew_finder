@@ -7,9 +7,11 @@ class BrewFinder::CLI
   
   def list_breweries
     puts "Welcome to Brew Finder! Let's find you some brews near you."
-    puts "Please enter your zipcode."
+    puts "Please enter your 5-digit zipcode."
     #gets user input, finds breweries in that area from API and formats them in numbered list 
-    @breweries = BrewFinder::Brewery.breweries_nearby#(input)
+    
+    input = gets.strip.to_i
+    @breweries = BrewFinder::Brewery.breweries_nearby(input)
     
     @breweries.each.with_index(1) {|b, i| puts "#{i}) #{b.name} - #{b.street} - #{b.type}"}
   end
