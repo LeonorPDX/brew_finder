@@ -8,12 +8,11 @@ class BrewFinder::CLI
   def list_breweries
     puts "Welcome to Brew Finder! Let's find you some brews near you."
     puts "Please enter your 5-digit zipcode."
-    #gets user input, finds breweries in that area from API and formats them in numbered list 
     
     input = gets.strip.to_i
-    @breweries = BrewFinder::Brewery.breweries_nearby(input)
+    BrewFinder::API.breweries_nearby(input)
     
-    @breweries.each.with_index(1) {|b, i| puts "#{i}) #{b.name} - #{b.street} - #{b.type}"}
+    BrewFinder::Brewery.all.each.with_index(1) {|b, i| puts "#{i}) #{b.name} - #{b.street} - #{b.brewery_type}"}
   end
   
   def brewery_details
@@ -23,21 +22,22 @@ class BrewFinder::CLI
     
     while input != "exit"
     input = gets.strip.downcase
-      if input.to_i > 0 
-        b = @breweries[input.to_i-1]
-        puts "Here's more detailed information about #{b.name}."
+      if input.to_i > 0 && input.to_i <= BrewFinder::Brewery.all.length
+        BrewFinder::Brewery.display_details(input.to_i-1)
       elsif input == "new zip"
+        BrewFinder::Brewery.destroy_all
         list_breweries
       elsif input == "exit"
         goodbye
       else
-        puts "Not sure what you meant, please type 'new zip' or 'exit'"
+        puts "Not sure what you meant... please pick a number from the list, or type 'new zip' or 'exit'"
       end
-    puts "You can pick another number from the list, type 'new zip' or 'exit'."
+
      end
   end
   
   def goodbye
+    BrewFinder::Brewery.destroy_all
     puts "Goodbye, and thanks for checking out Brew Finder!"
   end
   
