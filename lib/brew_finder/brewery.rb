@@ -1,7 +1,7 @@
 require 'httparty'
 
 class BrewFinder::Brewery
-  attr_accessor :name, :street, :type
+  attr_accessor :id, :name, :street, :brewery_type, :city, :state, :postal_code, :country, :longitude, :latitude, :phone, :website_url, :updated_at, :tag_list
   
   def initialize(hash)
     hash.each {|k, v| self.send("#{k}=", v)}
