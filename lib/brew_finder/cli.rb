@@ -40,10 +40,9 @@ class BrewFinder::CLI
       input = gets.strip.downcase.gsub(" ","_")
       BrewFinder::API.breweries_state(input)
       display_state
-    elsif choice == "exit"
-      goodbye
     else
-      puts "Please type either 'zip' or state'."
+      puts "I'm sorry, that is not a valid choice."
+      goodbye
     end
   end
     
@@ -61,14 +60,15 @@ class BrewFinder::CLI
   
   def brewery_details
     input = nil 
-    while input != "exit"
+
     puts "Which brewery would you like to learn more about? Please enter a number, or 'new location' to search again or 'exit'." 
-    
+    while input != "exit"   
     input = gets.strip.downcase
       if input == "exit"
         goodbye
       elsif input.to_i > 0 && input.to_i <= BrewFinder::Brewery.all.length
         BrewFinder::Brewery.display_details(input.to_i-1)
+        puts "Pick a new number from the list, or type 'new location' or 'exit'"
       elsif input == "new location"
         BrewFinder::Brewery.destroy_all
         search_breweries
