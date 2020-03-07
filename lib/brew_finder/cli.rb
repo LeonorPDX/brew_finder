@@ -2,8 +2,7 @@ class BrewFinder::CLI
   
   def call 
     welcome
-    choose_search
-    list_breweries
+    search_breweries
     brewery_details
   end
   
@@ -11,8 +10,8 @@ class BrewFinder::CLI
     puts "Welcome to Brew Finder! Let's find you some brews near you."
   end
   
-  def choose_search
-    puts "Would you like to see all the breweries in your state or in your zip code? Please type 'zip' or 'state'."
+  def search_breweries
+    puts "Would you like to see all the breweries in your state (up to 50), or all the breweries in your zip code? Please type 'zip' or 'state'."
     choice = gets.strip.downcase
     
     if choice == "zip"
@@ -28,9 +27,7 @@ class BrewFinder::CLI
     else
       puts "Please type either 'zip' or state'."
     end
-  end
     
-  def list_breweries
     puts ""
     BrewFinder::Brewery.all.each.with_index(1) {|b, i| puts "#{i}) #{b.name} - #{b.street} - #{b.brewery_type}"}
     puts ""
@@ -46,14 +43,13 @@ class BrewFinder::CLI
         BrewFinder::Brewery.display_details(input.to_i-1)
       elsif input == "new location"
         BrewFinder::Brewery.destroy_all
-        choose_search
+        search_breweries
       elsif input == "exit"
         goodbye
       else
         puts "Not sure what you meant..."
         puts "Please pick a number from the list, or type 'new location' or 'exit'"
       end
-
      end
   end
   

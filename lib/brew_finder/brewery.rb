@@ -6,7 +6,6 @@ class BrewFinder::Brewery
   
   def initialize(hash)
     hash.each {|k, v| self.send("#{k}=", v)}
-    
     @@all << self
   end
   
@@ -18,7 +17,6 @@ class BrewFinder::Brewery
     puts "Type: #{b.brewery_type}"
     puts "Phone: #{b.phone}"
     puts "Website: #{b.website_url}"
-    puts "Tags: #{b.tag_list}"
     puts "---------------"
   end
   
