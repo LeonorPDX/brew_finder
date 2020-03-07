@@ -12,7 +12,13 @@ class BrewFinder::Brewery
   
   def self.display_details(index)
     b = self.all[index]
-    puts "#{b.name}"
+    puts "---------------"
+    puts "#{b.name} is located at #{b.street} in #{b.city}, #{b.state}."
+    puts "Here are some details about #{b.name}:"
+    puts "Type: #{b.brewery_type}"
+    puts "Phone: #{b.phone}"
+    puts "Website: #{b.website_url}"
+    puts "---------------"
   end
   
   def self.all
