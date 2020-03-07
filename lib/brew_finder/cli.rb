@@ -8,10 +8,26 @@ class BrewFinder::CLI
   
   def welcome 
     puts "Welcome to Brew Finder! Let's find you some brews near you."
+    puts
+   puts "              ~  ~"
+   puts "         ( o )o)"
+   puts "       ( o )o )o)"
+   puts "     (o( ~~~~~~~~o "
+   puts "     ( )' ~~~~~~~' "
+   puts "     ( )|)       |-.__.. "
+   puts "       o|   _    |-__  | "
+   puts "       o|  |_)   |   | | "
+   puts "        |  |_)   |   | | "
+   puts "       o|        |  / /  "
+   puts "        |        | / / "
+   puts "        |        |- ' "
+   puts "        .========.  "
+   puts ""
   end
   
   def search_breweries
-    puts "Would you like to see all the breweries in your state (up to 50), or all the breweries in your zip code? Please type 'zip' or 'state'."
+    puts "Would you like to see all the breweries in your state (up to 50),"
+    puts "or all the breweries in your zip code? Please type 'zip' or 'state'."
     choice = gets.strip.downcase
     
     if choice == "zip"
@@ -31,11 +47,13 @@ class BrewFinder::CLI
     puts ""
     BrewFinder::Brewery.all.each.with_index(1) {|b, i| puts "#{i}) #{b.name} - #{b.street} - #{b.brewery_type}"}
     puts ""
-    puts "Which brewery would you like to learn more about? Please enter a number, or 'new location' to search again or 'exit'." 
+
   end
   
   def brewery_details
     input = nil 
+    
+    puts "Which brewery would you like to learn more about? Please enter a number, or 'new location' to search again or 'exit'." 
     
     while input != "exit"
     input = gets.strip.downcase
@@ -44,6 +62,7 @@ class BrewFinder::CLI
       elsif input == "new location"
         BrewFinder::Brewery.destroy_all
         search_breweries
+        puts "Do you want to learn more about one of these? Enter a number, 'new location' or 'exit'."
       elsif input == "exit"
         goodbye
       else
