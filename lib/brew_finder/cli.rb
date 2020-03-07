@@ -2,6 +2,7 @@ class BrewFinder::CLI
   
   def call 
     welcome
+    choose_search
     list_breweries
     brewery_details
   end
@@ -10,15 +11,30 @@ class BrewFinder::CLI
     puts "Welcome to Brew Finder! Let's find you some brews near you."
   end
   
-  def list_breweries
-    puts "Please enter your 5-digit zipcode."
+  def choose_search
+    puts "Would you like to see all the breweries in your state or in your zip code? Please type 'zip' or 'state'."
+    choice = gets.strip.downcase
     
-    input = gets.strip.to_i
-    BrewFinder::API.breweries_nearby(input)
+    if choice == "zip"
+      puts "Please enter your 5-digit zipcode."
+      input = gets.strip.to_i
+      BrewFinder::API.breweries_zip(input)
+    elsif choice == "state"
+      puts "Please enter the full, unabbreviated name of your state."
+      input = gets.strip.downcase.gsub(" ","_")
+      BrewFinder::API.breweries_state(input)
+    elsif choice == "exit"
+      goodbye
+    else
+      puts "Please type either 'zip' or state'."
+    end
+  end
+    
+  def list_breweries
     puts ""
     BrewFinder::Brewery.all.each.with_index(1) {|b, i| puts "#{i}) #{b.name} - #{b.street} - #{b.brewery_type}"}
     puts ""
-    puts "Which brewery would you like to learn more about? Please enter a number, or 'new zip' to try a new location or 'exit'." 
+    puts "Which brewery would you like to learn more about? Please enter a number, or 'new location' to search again or 'exit'." 
   end
   
   def brewery_details
@@ -28,14 +44,14 @@ class BrewFinder::CLI
     input = gets.strip.downcase
       if input.to_i > 0 && input.to_i <= BrewFinder::Brewery.all.length
         BrewFinder::Brewery.display_details(input.to_i-1)
-      elsif input == "new zip"
+      elsif input == "new location"
         BrewFinder::Brewery.destroy_all
-        list_breweries
+        choose_search
       elsif input == "exit"
         goodbye
       else
         puts "Not sure what you meant..."
-        puts "Please pick a number from the list, or type 'new zip' or 'exit'"
+        puts "Please pick a number from the list, or type 'new location' or 'exit'"
       end
 
      end

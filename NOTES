@@ -22,3 +22,12 @@ Program asks user to select a brewery from the list to learn more about
 User types number
 
 Program returns detailed information on the brewery
+
+
+LOGIC FOR ZIP OR STATE QUERY
+Ask user how they want to search
+Gets input, do one of two things based on if input = zip input = STATE
+if zip, code as exists
+if state, ask for full state name not abbreviated
+gets.strip.downcase
+interpolate input into state query in API 
