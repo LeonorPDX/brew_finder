@@ -1,8 +1,6 @@
 # BrewFinder
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/brew_finder`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to Brew Finder. This is a CLI application to find breweries and cideries by location in the United States. It uses an API, Open Brewery, to fetch results. To run the program enter bin/brew_finder. 
 
 ## Installation
 
@@ -19,10 +17,12 @@ And then execute:
 Or install it yourself as:
 
     $ gem install brew_finder
+    
+Prerequisites: This API does not require a key. This gem includes 'httparty' and 'colorize'. So when you run bundle install this library should be installed. If not then include 'httparty' and 'colorize' in your gem file.
 
 ## Usage
 
-TODO: Write usage instructions here
+Enter bin/brew_finder in the command line and follow program prompts to get information on breweries near you.
 
 ## Development
 
