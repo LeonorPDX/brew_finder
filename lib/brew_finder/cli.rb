@@ -42,7 +42,6 @@ class BrewFinder::CLI
       display_state
     else
       puts "I'm sorry, that is not a valid choice."
-      goodbye
     end
   end
     
@@ -50,31 +49,32 @@ class BrewFinder::CLI
     puts ""
     BrewFinder::Brewery.all.each.with_index(1) {|b, i| puts "#{i}) #{b.name} - #{b.street} - #{b.brewery_type}"}
     puts ""
+    puts "Which brewery would you like to learn about? Please enter a number."
   end
   
   def display_state
     puts ""
     BrewFinder::Brewery.all.each.with_index(1) {|b, i| puts "#{i}) #{b.name} - #{b.city} - #{b.brewery_type}"}
     puts ""
+    puts "Which brewery would you like to learn about? Please enter a number."
   end
   
   def brewery_details
     input = nil 
-
-    puts "Which brewery would you like to learn more about? Please enter a number, or 'new location' to search again or 'exit'." 
-    while input != "exit"   
+    while input != "exit" 
+    puts "You can type 'start over' to search again or 'exit'." 
+  
     input = gets.strip.downcase
       if input == "exit"
         goodbye
       elsif input.to_i > 0 && input.to_i <= BrewFinder::Brewery.all.length
         BrewFinder::Brewery.display_details(input.to_i-1)
-        puts "Pick a new number from the list, or type 'new location' or 'exit'"
-      elsif input == "new location"
+        puts "Pick a new number from the list to learn about another brewery."
+      elsif input == "start over"
         BrewFinder::Brewery.destroy_all
         search_breweries
       else
-        puts "Not sure what you meant..."
-        puts "Please pick a number from the list, or type 'new location' or 'exit'"
+        puts "Not sure what you meant... Please pick a number from the list."
       end
      end
   end
