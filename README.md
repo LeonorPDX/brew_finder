@@ -1,6 +1,6 @@
-# BrewFinder
+# Brew Finder
 
-Welcome to Brew Finder. This is a CLI application to find breweries and cideries by location in the United States. It uses an API, Open Brewery, to fetch results. To run the program enter bin/brew_finder. 
+Welcome to Brew Finder. This is a CLI application to find breweries and cideries by location in the United States. It uses an API, Open Brewery DB, to fetch results. To run the program enter bin/brew_finder. 
 
 ## Installation
 
