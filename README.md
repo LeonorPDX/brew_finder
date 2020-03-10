@@ -41,3 +41,5 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the BrewFinder project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/'jovial-environment-1521'/brew_finder/blob/master/CODE_OF_CONDUCT.md).
+
+[![Run on Repl.it](https://repl.it/badge/github/LeonorPDX/brew_finder)](https://repl.it/github/LeonorPDX/brew_finder)
