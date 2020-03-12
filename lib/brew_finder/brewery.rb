@@ -34,7 +34,6 @@ class BrewFinder::Brewery
     puts "Which brewery would you like to learn about? Please enter a number.".colorize(:yellow)
   end
   
-  
   def self.all
     @@all
   end
