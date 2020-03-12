@@ -20,6 +20,21 @@ class BrewFinder::Brewery
     puts "---------------".colorize(:green)
   end
   
+  def self.display_zip
+    puts ""
+    self.all.each.with_index(1) {|b, i| puts "#{i})".colorize(:yellow) + " #{b.name} - #{b.street} - #{b.brewery_type}"}
+    puts ""
+    puts "Which brewery would you like to learn about? Please enter a number.".colorize(:yellow)
+  end
+  
+  def self.display_state
+    puts ""
+    self.all.each.with_index(1) {|b, i| puts "#{i})".colorize(:yellow) + " #{b.name} - #{b.city} - #{b.brewery_type}"}
+    puts ""
+    puts "Which brewery would you like to learn about? Please enter a number.".colorize(:yellow)
+  end
+  
+  
   def self.all
     @@all
   end

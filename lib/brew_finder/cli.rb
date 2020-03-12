@@ -34,31 +34,17 @@ class BrewFinder::CLI
       puts "Please enter your 5-digit zipcode.".colorize(:yellow)
       input = gets.strip.to_i
       BrewFinder::API.breweries_zip(input)
-      display_zip
+      BrewFinder::Brewery.display_zip
     elsif choice == "state"
       puts "Please enter the full, unabbreviated name of your state.".colorize(:yellow)
       input = gets.strip.downcase.gsub(" ","_")
       BrewFinder::API.breweries_state(input)
-      display_state
+      BrewFinder::Brewery.display_state
     else
       puts "I'm sorry, that is not a valid choice.".colorize(:yellow)
     end
   end
     
-  def display_zip
-    puts ""
-    BrewFinder::Brewery.all.each.with_index(1) {|b, i| puts "#{i})".colorize(:yellow) + " #{b.name} - #{b.street} - #{b.brewery_type}"}
-    puts ""
-    puts "Which brewery would you like to learn about? Please enter a number.".colorize(:yellow)
-  end
-  
-  def display_state
-    puts ""
-    BrewFinder::Brewery.all.each.with_index(1) {|b, i| puts "#{i})".colorize(:yellow) + " #{b.name} - #{b.city} - #{b.brewery_type}"}
-    puts ""
-    puts "Which brewery would you like to learn about? Please enter a number.".colorize(:yellow)
-  end
-  
   def brewery_details
     input = nil 
     while input != "exit" 
