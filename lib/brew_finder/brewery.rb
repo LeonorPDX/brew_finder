@@ -1,6 +1,6 @@
 
 class BrewFinder::Brewery
-  attr_accessor :id, :name, :street, :brewery_type, :city, :state, :postal_code, :country, :longitude, :latitude, :phone, :website_url, :updated_at, :tag_list
+  attr_accessor :id, :obdb_id, :address_2, :address_3, :name, :street, :brewery_type, :city, :state, :county_province, :postal_code, :country, :longitude, :latitude, :phone, :website_url, :created_at, :updated_at, :tag_list
   
   @@all = []
   
