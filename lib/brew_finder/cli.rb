@@ -3,7 +3,6 @@ class BrewFinder::CLI
   def call 
     welcome
     search_breweries
-    brewery_details
   end
   
   def welcome 
@@ -35,13 +34,18 @@ class BrewFinder::CLI
       input = gets.strip.to_i
       BrewFinder::API.breweries_zip(input)
       BrewFinder::Brewery.display_zip
+      brewery_details
     elsif choice == "state"
       puts "Please enter the full, unabbreviated name of your state.".colorize(:yellow)
       input = gets.strip.downcase.gsub(" ","_")
       BrewFinder::API.breweries_state(input)
       BrewFinder::Brewery.display_state
+      brewery_details
+    elsif choice == "exit"
+      goodbye
     else
       puts "I'm sorry, that is not a valid choice.".colorize(:yellow)
+      search_breweries
     end
   end
     
